@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/homePage";
+import ProductEditorPage from "./pages/productEditorPage";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import ContactPage from "./pages/contactPage";
+import AboutPage from "./pages/aboutPage";
+import BraceletsPage from "./pages/products/BraceletsPage";
+import AtebasPage from "./pages/products/AtebasPage";
+import BeadAccessoriesPage from "./pages/products/BeadAccessoriesPage";
+import AnkletsPage from "./pages/products/AnkletsPage";
+import { CartProvider } from "./context/cartContext"; 
+import CartPage from "./pages/cartPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider> 
+      <BrowserRouter>
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/editor" element={<ProductEditorPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/products/bracelets" element={<BraceletsPage />} />
+          <Route path="/products/atebas" element={<AtebasPage />} />
+          <Route
+            path="/products/beadAccessories"
+            element={<BeadAccessoriesPage />}
+          />
+          <Route path="/products/anklets" element={<AnkletsPage />} />
+          <Route path="/cart" element={<CartPage />} />
+
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 
